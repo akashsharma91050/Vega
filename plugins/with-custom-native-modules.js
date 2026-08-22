@@ -112,6 +112,15 @@ function withCustomNativeModules(config) {
   // 3. Add necessary dependencies to app/build.gradle
   config = withAppBuildGradle(config, cfg => {
     let contents = cfg.modResults.contents;
+    
+    // Force a single androidx.work version to avoid duplicate-class conflicts
+    if (!contents.includes('resolutionStrategy.force')) {
+      contents = contents.replace(
+        /android\s*\{/,
+        match =>
+          `${match}\n    configurations.all {\n        resolutionStrategy {\n            force 'androidx.work:work-runtime:2.8.0'\n            force 'androidx.work:work-runtime-ktx:2.8.0'\n        }\n    }\n`,
+      );
+    }
 
     // Unity Ads (LevelPlay) SDK
     if (!contents.includes('com.unity3d.ads:unity-ads')) {
