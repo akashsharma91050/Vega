@@ -40,7 +40,7 @@ class UnityAdsModule(private val reactContext: ReactApplicationContext) :
             promise.resolve(true)
             return
         }
-        val activity = currentActivity
+        val activity = reactApplicationContext.currentActivity
         if (activity == null) {
             promise.reject("NO_ACTIVITY", "No current activity available to initialize Unity Ads")
             return
@@ -95,7 +95,7 @@ class UnityAdsModule(private val reactContext: ReactApplicationContext) :
     }
 
     private fun show(placementId: String, eventPrefix: String, promise: Promise) {
-        val activity = currentActivity
+        val activity = reactApplicationContext.currentActivity
         if (activity == null) {
             promise.reject("NO_ACTIVITY", "No current activity available to show ad")
             return
