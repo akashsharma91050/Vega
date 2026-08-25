@@ -24,6 +24,9 @@ module.exports = () => {
   const PACKAGE_NAME = IS_PLAYSTORE ? 'vega.app' : 'com.vega';
   const APP_SCHEME = IS_PLAYSTORE ? 'vegaapp' : 'com.vega';
   const plugins = [
+    './plugins/with-workmanager-resolution.js',git add app.config.js plugins/with-workmanager-resolution.js
+    git commit -m "Align WorkManager dependencies"
+    git push origin main
     './plugins/with-custom-native-modules.js',
     './plugins/android-native-config.js',
     './plugins/with-saf-copy-module.js',
